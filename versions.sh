@@ -99,7 +99,7 @@ for version in "${versions[@]}"; do
 			date=
 			while [ -z "$fullVersion" ]; do
 				commits="$(
-					# wget -qO- 'https://go.googlesource.com/go/+log/refs/heads/master?format=JSON' # the first line of this is ")]}'" for avoiding javscript injection vulnerabilities, which is annoying, and the dates are *super* cursed ("Mon Dec 04 10:00:41 2023 -0800") -- even date(1) doesn't want to parse them ("date: invalid date ‘Mon Dec 04 10:00:41 2023 -0800’")
+					# wget -qO- 'https://go.googlesource.com/go/+log/refs/heads/master?format=JSON' # the first line of this is ")]}'" for avoiding javascript injection vulnerabilities, which is annoying, and the dates are *super* cursed ("Mon Dec 04 10:00:41 2023 -0800") -- even date(1) doesn't want to parse them ("date: invalid date ‘Mon Dec 04 10:00:41 2023 -0800’")
 					# ... so we use GitHub's "atom feeds" endpoint instead, which if you ask for JSON, gives back JSON 😄
 					wget -qO- --header 'Accept: application/json' "https://github.com/golang/go/commits/$commit.atom" \
 						| jq -r '
